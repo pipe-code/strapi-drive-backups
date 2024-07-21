@@ -18,20 +18,26 @@ This project is a Node.js script that creates backups of a MySQL database and a 
 ### Installation
 
 1. Clone this repository:
-       git clone https://github.com/pipe-code/strapi-drive-backups.git
-       cd strapi-drive-backups
+
+    git clone https://github.com/pipe-code/strapi-drive-backups.git
+    cd strapi-drive-backups
+
 2. Install the required npm packages:
-        npm install
+
+    npm install
+
 3. Create a .env file in the root of the project and add the following variables:
-        CLIENT_ID=your_google_client_id
-        CLIENT_SECRET=your_google_client_secret
-        REFRESH_TOKEN=your_google_refresh_token
-        DRIVE_FOLDER_ID=your_google_drive_folder_id
-        DB_NAME=your_database_name
-        DB_USER=your_database_username
-        DB_PASSWORD=your_database_password
-        DIRECTORY_TO_BACKUP=/path/to/your/directory
-        KEEP_LOCAL_BACKUPS=true_or_false
+
+    CLIENT_ID=your_google_client_id
+    CLIENT_SECRET=your_google_client_secret
+    REFRESH_TOKEN=your_google_refresh_token
+    DRIVE_FOLDER_ID=your_google_drive_folder_id
+    DB_NAME=your_database_name
+    DB_USER=your_database_username
+    DB_PASSWORD=your_database_password
+    DIRECTORY_TO_BACKUP=/path/to/your/directory
+    KEEP_LOCAL_BACKUPS=true_or_false
+
 
 ## Environment Variables
 - CLIENT_ID: Your Google API client ID. You can obtain this by creating OAuth 2.0 credentials in the Google Cloud Console.
