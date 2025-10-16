@@ -17,6 +17,7 @@ const getFormattedDate = () => {
 }
 
 const FORMATTED_DATE = getFormattedDate();
+const DB_CLIENT = process.env.DB_CLIENT || 'mysql';
 const DB_NAME = process.env.DB_NAME;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
@@ -24,7 +25,7 @@ const DIRECTORY_TO_BACKUP = process.env.DIRECTORY_TO_BACKUP;
 const KEEP_LOCAL_BACKUPS = process.env.KEEP_LOCAL_BACKUPS === 'true';
 const BACKUP_FOLDER = './backups';
 const ZIP_NAME = `${FORMATTED_DATE}_public.tar.gz`;
-const SQL_DUMP_NAME = `${FORMATTED_DATE}_db.sql`;
+const SQL_DUMP_NAME = DB_CLIENT === 'postgres' ? `${FORMATTED_DATE}_db.pgdump` : `${FORMATTED_DATE}_db.sql`;
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -60,7 +61,10 @@ async function main() {
 
     // Dump MySQL database
     const sqlDumpPath = path.join(BACKUP_FOLDER, SQL_DUMP_NAME);
-    exec(`mysqldump -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} > ${sqlDumpPath}`, async (err) => {
+    const mysqlDumpCommand = `mysqldump -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} > ${sqlDumpPath}`;
+    const postgresDumpCommand = `pg_dump -U ${DB_USER} ${DB_NAME} > ${sqlDumpPath}`;
+    const dumpCommand = DB_CLIENT === 'postgres' ? postgresDumpCommand : mysqlDumpCommand;
+    exec(dumpCommand, async (err) => {
         if (err) {
             console.error('Error dumping MySQL database:', err);
             return;

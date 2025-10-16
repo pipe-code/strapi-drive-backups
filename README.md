@@ -43,9 +43,10 @@ This project is a Node.js script that creates backups of a MySQL database and a 
 - CLIENT_SECRET: Your Google API client secret. Obtain this along with the client ID.
 - REFRESH_TOKEN: A refresh token to authenticate the application. You can obtain this by authorizing your application to access Google Drive.
 - DRIVE_FOLDER_ID: The ID of the Google Drive folder where the backups will be uploaded. You can find this by navigating to the folder in Google Drive and copying the part of the URL after folders/.
-- DB_NAME: The name of your MySQL database.
-- DB_USER: The username for your MySQL database.
-- DB_PASSWORD: The password for your MySQL database.
+- DB_CLIENT: 
+- DB_NAME: The name of your database.
+- DB_USER: The username for your database.
+- DB_PASSWORD: The password for your database.
 - DIRECTORY_TO_BACKUP: The path to the directory you want to backup.
 - KEEP_LOCAL_BACKUPS: Set to true if you want to keep the local files after uploading to Google Drive. Set to false to delete the files after uploading.
 
