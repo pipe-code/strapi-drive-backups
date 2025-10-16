@@ -62,7 +62,7 @@ async function main() {
     // Dump MySQL database
     const sqlDumpPath = path.join(BACKUP_FOLDER, SQL_DUMP_NAME);
     const mysqlDumpCommand = `mysqldump -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} > ${sqlDumpPath}`;
-    const postgresDumpCommand = `pg_dump -U ${DB_USER} ${DB_NAME} > ${sqlDumpPath}`;
+    const postgresDumpCommand = `PGPASSWORD="${DB_PASSWORD}" pg_dump -U ${DB_USER} ${DB_NAME} > ${sqlDumpPath}`;
     const dumpCommand = DB_CLIENT === 'postgres' ? postgresDumpCommand : mysqlDumpCommand;
     exec(dumpCommand, async (err) => {
         if (err) {
