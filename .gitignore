@@ -2,4 +2,5 @@
 .env
 node_modules/
 backups/*.sql
+backups/*.pgdump
 backups/*.tar.gz
